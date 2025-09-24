@@ -48,5 +48,37 @@ Cách sử dùng thường sẽ dùng protocol hoặc extension
 
 ***Kết thúc phần 1 nhé !***
 
-## Phần 2 : Phần này chúng ta sẽ đi làm rõ về Protocol, Closure, và Callback nhé!
+## Phần 2 : Phần này chúng ta sẽ đi làm rõ về Protocol, Closure, và Callback, Delegate nhé!
+**Đầu tiên : Là sẽ tìm hiểu rõ về Protocol và Delegate.**
+Bản chất Delegate nó là 1 protocol ( bản hợp đồng, interface) - Đã tìm hiểu ở trên
+Delegate là 1 loại Design Pattern cho phép 1 đối tượng uỷ quyền một số tác vụ cho một số đối tượng khác thông qua protocol, ví dụ Sếp bạn nhận nhiệm vụ hoàn thành 1 task , sếp bạn không thể một mình làm hết dự án -> uỷ quyền cho bạn làm phần A -> Khi bạn làm xong, bàn giao lại cho sếp
+
+**Closure là gì**
+Bản chất closure là một function nhưng vô danh, nó được capture lại vào một biến, hằng trong để hoàn thành một nhiệm vụ trong ngữ cảnh nào đó.
+--Chắc chả hiểu gì--
+
+**Call back là gì**
+Là một cơ chế trong đó một hàm ( hoặc closure) được truyền vào như một tham số và sẽ được gọi lại khi một tác vụ hoàn thành hoặc một sự kiện được xảy ra. Thường sẽ được sử dụng để xử lý các tác vụ bất đồng bộ ( gọi API, xử lý sự kiện, hoặc animation)
+***Thông thường sẽ có 2 cách chính là Delegate và Closure :***
+Theo mình tìm hiểu thì trước đây đa số sẽ xử dụng Delegate nhưng về sau khi Closure ra mắt nó được sử dụng rộng rãi.
+Nhưng tuỳ hoàn cảnh cũng sẽ có những ưu nhược điểm. 
+Về Delegate sẽ có ưu điểm là dễ bảo trì và mở rộng nhưng triển khai khó hơn và khi xử lý one to many relationships thì sẽ rất rối.( Bạn có thể hình dung giống việc bạn có 2 table view trong cùng 1 viewcontroller và bạn vẫn dùng .delegate = self) . Lúc này thì ....
+
+Còn về closure thì sẽ rất dễ triển khai, code sẽ đơn lập dễ nhìn nhưng khó mở rộng, hoặc tái sử dụng lại.
+
+**Phần này bạn cứ làm nhiều sẽ tự ngộ ra**
+
+## Phần 3 : ARC (Automatic Reference Counting) 
+Nó giúp tự động quản lý bộ nhớ cho các thể hiện(instance) của lớp(class) - Không phải làm thủ công như trước đây ( phải gọi retain - hoặc release )
+
+**Sẽ chia làm 2 loại là Tham chiếu mạnh(Strong References) và Tham chiếu yếu(Weak References)**
+Tham chiếu mạnh sẽ làm tăng thể hiện tham chiếu của đối tượng lên 1, có ít nhất 1 tham chiếu mạnh lên đối tượng thì đối tượng sẽ không được giải phóng.
+Tham chiếu yếu không làm tăng số lượng tham chiếu nên đối tượng, khi đối tượng được giải phóng tham chiếu yếu sẽ tự động thành nil, do đó tham chiếu yếu luông là kiểu Optional.
+
+## Phần 4 : Bất đồng bộ GCD - Async/Await
+**Bản chất của 2 thằng hoàn toàn khác nhau nhé : về thằng GCD sẽ sâu về quản lý các Thread, có thể cấu hình từng thread 1 còn thằng async/await thì sẽ chủ yếu hỗ trợ về phần bất đồng bộ**
+Trước hết ta phải hiểu là đồng bộ là gì và bất đồng bộ là gì :
+Đồng bộ thì là ta sẽ làm từng việc một, làm xong việc này mới làm việc tiếp theo. Còn bất đồng bộ là ta sẽ thực hiện các việc khác rồi khi nào việc kia hoàn thành mới xử lý tiếp. Ví dụ như việc trò chuyện bằng thư, khi ta đi gửi thư xong phải mất thời gian người ta mới phản hồi thì trong lúc đó ta không thể chỉ chờ mà sẽ đi hoàn thành các việc khác trước rồi khi nào nhận được phản hồi mới xử lý tiếp. 
+**Bản chất thằng Async/Await là nó sẽ tối ưu để làm sao làm được nhiều task nhất nhưng dùng ít thread nhất có thể**
+
 
