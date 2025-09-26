@@ -81,4 +81,8 @@ Trước hết ta phải hiểu là đồng bộ là gì và bất đồng bộ 
 Đồng bộ thì là ta sẽ làm từng việc một, làm xong việc này mới làm việc tiếp theo. Còn bất đồng bộ là ta sẽ thực hiện các việc khác rồi khi nào việc kia hoàn thành mới xử lý tiếp. Ví dụ như việc trò chuyện bằng thư, khi ta đi gửi thư xong phải mất thời gian người ta mới phản hồi thì trong lúc đó ta không thể chỉ chờ mà sẽ đi hoàn thành các việc khác trước rồi khi nào nhận được phản hồi mới xử lý tiếp. 
 **Bản chất thằng Async/Await là nó sẽ tối ưu để làm sao làm được nhiều task nhất nhưng dùng ít thread nhất có thể**
 
-
+## Phần 5 : Nhân tiện đang bất đồng bộ thì mình sẽ làm luôn 1 thư viện nổi tiếng trong swift để xử lý nó đó là RxSwift.
+Chủ yếu nó chia làm 2 thành phần là phát ra và lắng nghe thông qua chuỗi dữ liệu (data streams) hay được gọi là Observable. 
+Mọi người có thể lắng nghe 1 Observable bằng subrice.
+Subjects là 1 kiểu đặc biệt của Observable vì nó vừa có thể lắng nghe cũng vừa có thể phát đi.
+Còn 1 kiểu nữa là Replay nó khá giống như Subject nhưng nó chỉ bắt những phát đi thành công, nó không nhận lỗi. Nên thường dùng để bind data giữa viewmodel và controller trong MVVM. Nó sẽ không bị dừng ngắt datastream nếu bị lỗi
